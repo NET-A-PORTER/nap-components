@@ -1,6 +1,6 @@
 {
   "name": "nap-components",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "authors": [
     "Matthew Green <matthew.green@net-a-porter.com>"
   ],
@@ -12,12 +12,13 @@
   "main": "elements.html",
   "license": "Apache-2.0",
   "ignore": [
-    "node_modules",
     "bower_components",
     "demo.html"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#~1.0.3",
+    "polymer": "Polymer/polymer#~1.0.3"
+  },
+  "devDependencies": {
     "iron-elements": "~1.0.0"
   },
   "respository": {
