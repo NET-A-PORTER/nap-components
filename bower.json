@@ -9,14 +9,19 @@
     "Polymer",
     "web-components"
   ],
-  "main": "index.html",
-  "license": "APACHE",
+  "main": "elements.html",
+  "license": "Apache-2.0",
   "ignore": [
     "node_modules",
-    "bower_components"
+    "bower_components",
+    "demo.html"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#~1.0.3",
     "iron-elements": "~1.0.0"
+  },
+  "respository": {
+    "type": "git",
+    "url": "https://github.com/NET-A-PORTER/nap-components.git"
   }
 }
