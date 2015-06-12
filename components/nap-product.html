@@ -1,0 +1,22 @@
+<polymer-element name="nap-product">
+  <template>
+    <img src={{_imgUrl(pid)}}/>
+    <div>{{designer}}</div>
+    <div>{{description}}</div>
+    <div>{{price}}</div>
+  </template>
+  <script>
+  	Polymer({
+  		is: 'nap-product',
+  		properties:{
+  			designer: String,
+  			pid: String,
+  			description: String,
+  			price: String
+  		},
+  		_imgUrl: function(pid) {
+  			return '//cache.net-a-porter.com/images/products/'+pid+'/'+pid+'_in_sl.jpg'
+  		}
+  	});
+  </script>
+</polymer-element>

@@ -1,0 +1,22 @@
+{
+  "name": "nap-components",
+  "version": "0.0.1",
+  "authors": [
+    "Matthew Green <matthew.green@net-a-porter.com>"
+  ],
+  "description": "A repository for all NAP web components",
+  "keywords": [
+    "Polymer",
+    "web-components"
+  ],
+  "main": "index.html",
+  "license": "APACHE",
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~1.0.3",
+    "iron-elements": "~1.0.0"
+  }
+}
