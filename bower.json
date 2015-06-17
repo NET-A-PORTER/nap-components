@@ -15,9 +15,11 @@
     "bower_components",
     "demo"
   ],
-  "devDependencies": {
-    "iron-elements": "~1.0.0",
+  "dependencies": {
     "polymer": "Polymer/polymer#~1.0.3"
+  },
+  "devDependencies": {
+    "iron-elements": "~1.0.0"
   },
   "respository": {
     "type": "git",
