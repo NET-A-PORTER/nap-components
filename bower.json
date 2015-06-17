@@ -9,14 +9,15 @@
     "Polymer",
     "web-components"
   ],
-  "main": "elements.html",
+  "main": "build.html",
   "license": "Apache-2.0",
   "ignore": [
     "bower_components",
-    "demo.html"
+    "demo"
   ],
   "devDependencies": {
-    "iron-elements": "~1.0.0"
+    "iron-elements": "~1.0.0",
+    "polymer": "Polymer/polymer#~1.0.3"
   },
   "respository": {
     "type": "git",

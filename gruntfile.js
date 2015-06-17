@@ -2,23 +2,31 @@
 
 module.exports = function(grunt) {
 
-	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-vulcanize');
 
 	grunt.initConfig({
 
-	  	concat: {
-		    dist: {
-		      	src: [
-		      		'polymer.html',
-		      		'components/nap-product.html'
-	  			],
-		      	dest: 'elements.html',
+	  	vulcanize: {
+		    default: {
+				options: {
+					excludes: {
+						imports: [
+							'polymer.html'
+						]
+			        },
+			        'strip-excludes': false,
+			        inline: true,
+			        strip: true
+				},
+				files: {
+					'components.min.html': 'components.html'
+				},
 		    },
-	  	},
+		}
 
 	});
 
 	grunt.registerTask('default', [
-		'concat'
+		'vulcanize'
 	])
 };
