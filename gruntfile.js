@@ -19,14 +19,20 @@ module.exports = function(grunt) {
 			        strip: true
 				},
 				files: {
-					'components.min.html': 'components.html'
-				},
+					'components/components.min.html': 'components/components.html'
+				}
 		    },
 		}
 
 	});
 
+	grunt.registerTask('move', function(){
+		grunt.file.copy('components/components.min.html', 'components.min.html');
+		grunt.file.delete('components/components.min.html');
+	})
+
 	grunt.registerTask('default', [
-		'vulcanize'
+		'vulcanize',
+		'move'
 	])
 };
