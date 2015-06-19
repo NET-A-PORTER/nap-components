@@ -1,23 +1,35 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<!--
+The `nap-product` element represents a single product summary, as seen on, 
+for example, listing pages.
+
+    <nap-product product$={{product}}></nap-product>
+
+The product data passed to it is expected to match the schema of a product as 
+defined by the LAD API.
+
+@demo demo/index.html
+-->
 <dom-module id="nap-product">
   <template>
-    <img src={{_imgUrl(pid)}}/>
-    <div>{{designer}}</div>
-    <div>{{description}}</div>
-    <div>{{price}}</div>
+    <img src={{_imgUrl(product.id)}}/>
+    <div class="designer">{{product.brand.name}}</div>
+    <div class="name">{{product.name}}</div>
+    <div class="price">{{_generatePrice(product.price)}}</div>
   </template>
   <script>
   	Polymer({
   		is: 'nap-product',
   		properties:{
-  			designer: String,
-  			pid: String,
-  			description: String,
-  			price: String
+  			product: Object // Should match the same schema as LAD provides.
   		},
   		_imgUrl: function(pid) {
   			return '//cache.net-a-porter.com/images/products/'+pid+'/'+pid+'_in_sl.jpg'
-  		}
+  		},
+      _generatePrice: function(price) {
+        var amount = price.amount || price.gross; 
+        return NAP.locale.currencySymbol + (Math.ceil(amount / price.divisor)).toString();
+      }
   	});
   </script>
 </dom-module>

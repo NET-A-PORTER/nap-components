@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 	<link rel="import" href="../components.html">
 	<style>
@@ -8,8 +9,17 @@
 			margin: 0;	
 		}
 	</style>
+	<script type="text/javascript">
+	var NAP = {
+		locale: {
+			country: 'GB',
+			language: 'en',
+			currencySymbol: '£'
+		}
+	};
+	</script>
 </head>
 <body>
-	<nap-product-list></nap-product-list>
+	<nap-product-upsell pids="[508770,543952,540978,538739,538736,538734]" limit="6"></nap-product-upsell>
 </body>
 </html>

@@ -1,6 +1,6 @@
 {
   "name": "nap-components",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "authors": [
     "Matthew Green <matthew.green@net-a-porter.com>"
   ],
@@ -9,7 +9,7 @@
     "Polymer",
     "web-components"
   ],
-  "main": "build.html",
+  "main": "components.html",
   "license": "Apache-2.0",
   "ignore": [
     "bower_components",

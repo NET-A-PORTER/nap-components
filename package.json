@@ -1,15 +1,19 @@
 {
   "name": "nap-components",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A repository for all NAP web components",
   "main": "gruntfile.js",
+  "scripts": {
+    "test": "./node_modules/web-component-tester/bin/wct"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
     "grunt-text-replace": "^0.4.0",
-    "grunt-vulcanize": "^0.6.4"
+    "grunt-vulcanize": "^0.6.4",
+    "web-component-tester": "^3.2.0"
   },
-  "author": "",
+  "author": "Members of NAP Tech",
   "license": "MIT"
 }

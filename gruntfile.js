@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-vulcanize');
 	grunt.loadNpmTasks('grunt-text-replace');
+	grunt.loadNpmTasks('web-component-tester');
 
 	grunt.initConfig({
 
@@ -26,14 +27,14 @@ module.exports = function(grunt) {
 		},
 
 		replace: {
-		  bowerPath: {
-		    src: ['components.min.html'],
-		    overwrite: true,
-		    replacements: [{
-		      from: /href="bower_components\//g,
-		      to: 'href="../'
-		    }]
-		  }
+		    bowerPath: {
+			    src: ['components.min.html'],
+			    overwrite: true,
+			    replacements: [{
+			        from: /href="bower_components\//g,
+			        to: 'href="../'
+			    }]
+		    }
 		}
 
 	});

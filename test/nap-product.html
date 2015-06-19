@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+	<script src="../node_modules/web-component-tester/browser.js"></script>
+	<link rel="import" href="../components/nap-product.html">
+	<script type="text/javascript">
+		var NAP = {
+			locale: {
+				country: 'GB',
+				language: 'en',
+				currencySymbol: '£'
+			}
+		};
+	</script>
+</head>
+<body>
+	<nap-product product='{"name":"Les Essentiels Show bandeau bikini top",
+		    "visible":true,
+		    "price":{
+		        "currency":"GBP",
+		        "divisor":100,
+		        "amount":15450
+		    },
+		    "onSale":false,
+		    "brand":{
+		        "id":1755,
+		        "name":"Eres",
+		        "urlKey":"Eres_url"
+		    },
+		    "id":594952,
+		    "nonReturnable":false,
+		    "badges":[
+		        "In_Stock",
+		        "Sold_as_a_set"
+		    ]}'></nap-product>
+
+	<!-- Test Suites -->
+	<script>
+		suite('<nap-product>', function() {
+			test('Image src is correct', function(){
+				var img = document.querySelector('nap-product img');
+				assert.equal(img.src, 'http://cache.net-a-porter.com/images/products/594952/594952_in_sl.jpg', 'Image src was incorrect');
+			});
+
+			test('Designer name is correct', function(){
+				var el = document.querySelector('nap-product .designer');
+				assert.equal(el.textContent, 'Eres', 'Designer name was incorrect');
+			});
+
+			test('Product name is correct', function(){
+				var el = document.querySelector('nap-product .name');
+				assert.equal(el.textContent, 'Les Essentiels Show bandeau bikini top', 'Product name was incorrect');
+			});
+
+			test('Price is correct', function(){
+				var el = document.querySelector('nap-product .price');
+				assert.equal(el.textContent, '£155', 'Price was incorrect');
+			});
+		});
+	</script>
+</body>
+</html>
