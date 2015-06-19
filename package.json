@@ -4,7 +4,7 @@
   "description": "A repository for all NAP web components",
   "main": "gruntfile.js",
   "scripts": {
-    "test": "./node_modules/web-component-tester/bin/wct"
+    "test": "./test.sh"
   },
   "dependencies": {},
   "devDependencies": {
@@ -15,5 +15,9 @@
     "web-component-tester": "^3.2.0"
   },
   "author": "Members of NAP Tech",
-  "license": "MIT"
+  "license": "MIT",
+  "respository": {
+    "type": "git",
+    "url": "https://github.com/NET-A-PORTER/nap-components.git"
+  }
 }
