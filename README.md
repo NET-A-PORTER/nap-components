@@ -1,4 +1,4 @@
-# NAP-Components
+# NAP-Components [![Build Status](https://travis-ci.org/NET-A-PORTER/nap-components.svg?branch=master)](https://travis-ci.org/NET-A-PORTER/nap-components)
 ----------------
 
 ## About
@@ -20,7 +20,7 @@ You should run this before committing new code.
 
 ## Testing
 
-Run `npm test` to test your components. This runs against Chrome, Firefox, Safari and IE using [Sauce Labs](https://saucelabs.com/home).
+Run `./test.sh` to test your components. This runs against Chrome, Firefox, Safari and IE using [Sauce Labs](https://saucelabs.com/home).
 If you need access to the Sauce Labs account the credentials are:
 
 Username: naptech
