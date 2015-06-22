@@ -41,7 +41,7 @@
 		suite('<nap-product>', function() {
 			test('Image src is correct', function(){
 				var img = document.querySelector('nap-product img');
-				assert.equal(img.src, 'http://cache.net-a-porter.com/images/products/594952/594952_in_sl.jpg', 'Image src was incorrect');
+				assert.equal(img.src, 'http://cache.net-a-porter.com/images/products/594952/594952_in_l.jpg', 'Image src was incorrect');
 			});
 
 			test('Designer name is correct', function(){
@@ -57,6 +57,18 @@
 			test('Price is correct', function(){
 				var el = document.querySelector('nap-product .price');
 				assert.equal(el.textContent, '£155', 'Price was incorrect');
+			});
+
+			test('Image changes on rollover', function() {
+				var img = document.querySelector('nap-product img');
+				document.querySelector('nap-product')._hoverShot();
+				assert.equal(img.src, 'http://cache.net-a-porter.com/images/products/594952/594952_ou_l.jpg', 'Image src was incorrect after hover');
+			});
+
+			test('Image changes back on mouse leave', function() {
+				var img = document.querySelector('nap-product img');
+				document.querySelector('nap-product')._indexShot();
+				assert.equal(img.src, 'http://cache.net-a-porter.com/images/products/594952/594952_in_l.jpg', 'Image src was incorrect after finishing hover');
 			});
 		});
 	</script>

@@ -13,6 +13,10 @@ Install Grunt, or just use the version from node_modules
 
 Run:
 
+`npm install`
+
+`bower install`
+
 `grunt` or `./node_modules/grunt_cli/bin/grunt`
 
 This runs the Vulcanize process and generates a minified and inlined version of your components.
@@ -24,6 +28,7 @@ Run `./test.sh` to test your components. This runs against Chrome, Firefox, Safa
 If you need access to the Sauce Labs account the credentials are:
 
 Username: naptech
+
 Password: NapTech123
 
 When writing new tests, either follow the examples already in the repo, or refer to the [Polymer docs on unit testing](https://www.polymer-project.org/0.5/articles/unit-testing-elements.html#polymers-testing-conventions).

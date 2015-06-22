@@ -11,12 +11,48 @@ defined by the LAD API.
 @demo demo/index.html
 -->
 <dom-module id="nap-product">
+  
+  <style>
+    :host {
+      display: block;
+      max-width: 240px;
+      box-sizing: border-box;
+      padding: 0 10px;
+
+      font-family: GillSans;
+      font-size: 14px;
+    }
+    .image {
+      width: 100%;
+    }
+    .designer {
+      text-transform: uppercase;
+    }
+    .name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      line-height: 18px;     /* fallback */
+      height: 36px;          /* fallback */
+      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-box-orient: vertical;
+      margin: 10px 0;
+    }
+  </style>
+
   <template>
-    <img src={{_imgUrl(product.id)}}/>
-    <div class="designer">{{product.brand.name}}</div>
-    <div class="name">{{product.name}}</div>
-    <div class="price">{{_generatePrice(product.price)}}</div>
+    <a href={{_productUrl(product.id)}}>  
+      <img id="image" 
+           class="image" 
+           src={{_imgUrl(product.id)}}
+           on-mouseover="_hoverShot"
+           on-mouseout="_indexShot"/>
+      <div class="designer">{{product.brand.name}}</div>
+      <div class="name">{{product.name}}</div>
+      <div class="price">{{_generatePrice(product.price)}}</div>
+    </a>
   </template>
+
   <script>
   	Polymer({
   		is: 'nap-product',
@@ -24,12 +60,22 @@ defined by the LAD API.
   			product: Object // Should match the same schema as LAD provides.
   		},
   		_imgUrl: function(pid) {
-  			return '//cache.net-a-porter.com/images/products/'+pid+'/'+pid+'_in_sl.jpg'
+  			return '//cache.net-a-porter.com/images/products/'+pid+'/'+pid+'_in_l.jpg'
   		},
+      _productUrl: function(pid) {
+        return '/' + NAP.locale.country.toLowerCase() + '/' + NAP.locale.language + '/product/'+pid;
+      },
       _generatePrice: function(price) {
         var amount = price.amount || price.gross; 
         return NAP.locale.currencySymbol + (Math.ceil(amount / price.divisor)).toString();
+      },
+      _indexShot: function() {
+        this.$.image.src = this.$.image.src.replace(/ou_(.*)\.jpg/, 'in_$1.jpg');
+      },
+      _hoverShot: function() {
+        this.$.image.src = this.$.image.src.replace(/in_(.*)\.jpg/, 'ou_$1.jpg');
       }
   	});
   </script>
+
 </dom-module>
