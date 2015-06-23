@@ -8,6 +8,9 @@ module.exports = {
       	'Windows 8.1/internet explorer'
   	  ]
     }
+    // local: {
+    //   browsers: ["chrome"]
+    // }
   },
 };
 

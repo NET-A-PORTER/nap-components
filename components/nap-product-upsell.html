@@ -1,10 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <dom-module id="nap-product-upsell">
   
-  <style>
-    
-  </style>
-
   <template>
     <iron-ajax
       auto
@@ -13,7 +9,7 @@
       handle-as="json"
       last-response="{{productData}}"></iron-ajax>
       <template is="dom-repeat" items="{{productData}}">
-        <nap-product product$="{{item}}"></nap-product>
+        <nap-product class="col-xs-6 col-md-4 col-lg-2" product$="{{item}}"></nap-product>
       </template>
   </template>
 
@@ -24,7 +20,7 @@
         pids: Array,
         limit: {
           type: Number,
-          value: 60 // Default
+          value: 6 // Default
         }
       },
       _generateParams: function(pids, limit) {

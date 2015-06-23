@@ -15,18 +15,24 @@ defined by the LAD API.
   <style>
     :host {
       display: block;
-      max-width: 240px;
       box-sizing: border-box;
-      padding: 0 10px;
-
+      padding: 0 10px !important;
       font-family: GillSans;
       font-size: 14px;
     }
     .image {
       width: 100%;
     }
+    .image:active {
+      filter: brightness(90%);
+      -webkit-filter: brightness(90%);
+      -moz-filter: brightness(90%);
+      -o-filter: brightness(90%);
+      -ms-filter: brightness(90%);
+    }
     .designer {
       text-transform: uppercase;
+      margin-top: 20px;
     }
     .name {
       overflow: hidden;
@@ -67,7 +73,7 @@ defined by the LAD API.
       },
       _generatePrice: function(price) {
         var amount = price.amount || price.gross; 
-        return NAP.locale.currencySymbol + (Math.ceil(amount / price.divisor)).toString();
+        return NAP.locale.currencySymbol + (Math.ceil(amount / price.divisor)).toString().replace(/\d(?=(\d{3})+$)/g, '$&,');
       },
       _indexShot: function() {
         this.$.image.src = this.$.image.src.replace(/ou_(.*)\.jpg/, 'in_$1.jpg');

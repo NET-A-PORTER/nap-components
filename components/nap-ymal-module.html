@@ -1,0 +1,52 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<dom-module id="nap-ymal-module">
+
+  <style>
+    .title {
+      text-transform: uppercase;
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    nap-product-upsell {
+      margin: 0 40px;
+    }
+
+    @media all and (min-width: 769px) {
+      nap-product-upsell {
+        margin: 0 85px;
+      }
+    }
+    @media all and (min-width: 951px) {
+      nap-product-upsell {
+        max-width: 1080px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+  
+  <template>
+    <iron-ajax
+      auto
+      url="{{_ymalUrl(pid)}}"
+      params="{{_generateParams(pids, limit)}}"
+      handle-as="json"
+      last-response="{{ymalData}}"></iron-ajax>
+    <h2 class="title">{{title}}</h2>
+    <nap-product-upsell class="row" pids="{{ymalData.ymalPids}}" limit="6"></nap-product-upsell>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nap-ymal-module',
+      properties:{
+        pid: String,
+        title: String
+      },
+      _ymalUrl: function(pid) {
+        return '/api/styling/products/' + pid + '/1/ymal.json'
+      }
+    });
+  </script>
+
+</dom-module>
