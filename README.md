@@ -13,11 +13,17 @@ Install Grunt, or just use the version from node_modules
 
 Run:
 
-`npm install`
+  `npm install -g web-component-tester`
 
-`bower install`
+  `npm install`
 
-`grunt` or `./node_modules/grunt_cli/bin/grunt`
+  `bower install`
+
+If you have issues installing try:
+
+  $ git config url."https://".insteadOf git://    
+
+  `grunt` or `./node_modules/grunt_cli/bin/grunt`
 
 This runs the Vulcanize process and generates a minified and inlined version of your components.
 You should run this before committing new code.

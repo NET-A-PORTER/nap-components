@@ -1,0 +1,29 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="nap-live-sessions">
+  
+  <style>
+
+  </style>
+
+  <template>
+      <iron-ajax
+      auto
+      url="/webapi/feed/sessioncount/NAP.json"
+      handle-as="json"
+      last-response="{{response}}">
+      </iron-ajax>
+    <div class="user-count">
+      <span id="session-count">{{response.sessioncount}}</span>
+    </div>
+  </template>
+
+  <script>
+  	Polymer({
+  		is: 'nap-live-sessions',
+  		properties:{
+  			sessions: String
+  		}
+  	});
+  </script>
+
+</dom-module>
