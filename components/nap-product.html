@@ -110,7 +110,6 @@ defined by the LAD API.
         return '/' + NAP.locale.country.toLowerCase() + '/' + NAP.locale.language + '/product/'+pid;
       },
       _generatePrice: function(price, isOnSale) {
-        console.log(price, isOnSale);
         if(isOnSale) {
           return this._formatPrice(price.original.gross, price.divisor);
         } else {
