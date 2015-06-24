@@ -1,6 +1,6 @@
 {
   "name": "nap-components",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A repository for all NAP web components",
   "main": "gruntfile.js",
   "scripts": {
