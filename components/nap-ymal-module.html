@@ -36,7 +36,7 @@
       handle-as="json"
       last-response="{{ymalData}}"
       last-error="{{error}}"></iron-ajax>
-    <template is="dom-if" if="{{ymalData}}">
+    <template is="dom-if" if="{{_pidsExist(ymalData)}}">
       <h2 class="title">{{title}}</h2>
       <nap-product-upsell class="row" pids="{{ymalData.ymalPids}}" limit="6"></nap-product-upsell>
     </template>
@@ -51,6 +51,9 @@
       },
       _ymalUrl: function(pid) {
         return '/api/styling/products/' + pid + '/1/ymal.json'
+      },
+      _pidsExist: function(data) {
+        return data && (data.ymalPids.length > 0);
       }
     });
   </script>
