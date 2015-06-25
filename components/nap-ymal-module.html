@@ -5,7 +5,7 @@
     :host {
       display: block;
     }
-    .title {
+    .heading {
       text-transform: uppercase;
       text-align: center;
       padding: 40px 0;
@@ -37,7 +37,7 @@
       last-response="{{ymalData}}"
       last-error="{{error}}"></iron-ajax>
     <template is="dom-if" if="{{_pidsExist(ymalData)}}">
-      <h2 class="title">{{title}}</h2>
+      <h2 class="heading">{{heading}}</h2>
       <nap-product-upsell class="row" pids="{{ymalData.ymalPids}}" limit="6"></nap-product-upsell>
     </template>
   </template>
@@ -47,7 +47,7 @@
       is: 'nap-ymal-module',
       properties:{
         pid: String,
-        title: String
+        heading: String
       },
       _ymalUrl: function(pid) {
         return '/api/styling/products/' + pid + '/1/ymal.json'
