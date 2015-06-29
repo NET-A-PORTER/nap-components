@@ -6,14 +6,17 @@
   </style>
 
   <template>
-      <iron-ajax
+      <iron-ajax id="getSessions"
       auto
       url="/webapi/feed/sessioncount/NAP.json"
       handle-as="json"
-      last-response="{{response}}">
+      last-response="{{response}}"
+      last-error="{{error}}"
+      on-response="_refresh"
+      >
       </iron-ajax>
     <div class="user-count">
-      <span id="session-count">{{response.sessioncount}}</span>
+        <span id="session-count">{{response.sessioncount}}</span>
     </div>
   </template>
 
@@ -22,8 +25,15 @@
   		is: 'nap-live-sessions',
   		properties:{
   			sessions: String
-  		}
+  		},
+      _refresh: function() {
+        this.async(function() {
+          this.$.getSessions.generateRequest();
+        },60000)
+      },
   	});
+
+
   </script>
 
 </dom-module>
