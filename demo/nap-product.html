@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="reset.css">
 
 	<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 	<link rel="import" href="../components/nap-product.html">
@@ -13,27 +14,62 @@
 			color: inherit;
 			text-decoration: none;
 		}
-	</style>
-	<script type="text/javascript">
-	var NAP = {
-		locale: {
-			country: 'GB',
-			language: 'en',
-			currencySymbol: '£'
+		nap-product {
+			width: 240px;
 		}
-	};
-	
-	</script>
+
+	</style>
+  <script type="text/javascript">
+  var NAP = {
+    locale: {
+      country: 'GB',
+      language: 'fr',
+      channel:'intl',
+      currencySymbol: '£'
+    }
+
+  };
+  </script>
 </head>
 <body>
-	<nap-product product='{"name":"Les Essentiels Show bandeau bikini top with some other cool stuff and maybe a bit more too",
+	<nap-product product='{"name":"Les Essentiels Show bandeau bikini top",
 		    "visible":true,
 		    "price":{
 		        "currency":"GBP",
 		        "divisor":100,
-		        "amount":15500
+		        "gross":15500
 		    },
 		    "onSale":false,
+		    "brand":{
+		        "id":1755,
+		        "name":"Eres",
+		        "urlKey":"Eres"
+		    },
+		    "id":594952,
+		    "nonReturnable":false,
+		    "badges":[
+		        "In_Stock",
+		        "Sold_as_a_set"
+		    ]}'></nap-product>
+
+	<nap-product product='{"name":"Les Essentiels Show bandeau bikini top",
+		    "visible":true,
+		    "price":{
+		        "discountPercent": 30,
+				"divisor": 100,
+				"duty": 0,
+				"tax": 2625,
+				"gross": 15750,
+				"net": 13125,
+				"currency": "GBP",
+				"original": {
+					"net": 18750,
+					"gross": 22500,
+					"tax": 3750,
+					"duty": 0
+				}
+		    },
+		    "onSale":true,
 		    "brand":{
 		        "id":1755,
 		        "name":"Eres",

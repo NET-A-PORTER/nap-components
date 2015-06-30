@@ -20,6 +20,7 @@ defined by the LAD API.
       font-family: GillSans;
       font-size: 14px;
       margin-bottom: 40px;
+      text-align: left;
     }
     .image {
       width: 100%;
@@ -45,6 +46,13 @@ defined by the LAD API.
       -webkit-box-orient: vertical;
       margin: 10px 0;
     }
+    .onSale .full-price {
+      text-decoration: line-through;
+    }
+    .sale-price, .discount {
+      color: #F00;
+      padding-left: 5px;
+    }
   </style>
 
   <template>
@@ -56,7 +64,22 @@ defined by the LAD API.
            on-mouseout="_indexShot"/>
       <div class="designer">{{product.brand.name}}</div>
       <div class="name">{{product.name}}</div>
-      <div class="price">{{_generatePrice(product.price)}}</div>
+
+      <template is="dom-if" if="{{product.activity}}">
+        <div class="locale">
+          <span class="city">{{product.activity.locale.city}}</span>
+          <span class="country">{{product.activity.locale.country}}</span>
+        </div>
+        <div class="activity">{{_activity(product.activity.type)}}</div>
+      </template>
+
+      <div class="price">
+        <span class="full-price">{{_generatePrice(product.price, product.onSale)}}</span>
+        <template is="dom-if" if="{{product.onSale}}">
+          <span class="sale-price">{{_generatePrice(product.price)}}</span>
+          <span class="discount">{{_discount(product.price)}}</span>
+        </template>
+      </div>
     </a>
   </template>
 
@@ -64,17 +87,62 @@ defined by the LAD API.
   	Polymer({
   		is: 'nap-product',
   		properties:{
-  			product: Object // Should match the same schema as LAD provides.
+  			product: Object, // Should match the same schema as LAD provides.
+        copy: {
+          type: Object,
+          value: {
+            en:{
+              off: "OFF"
+            },
+            fr:{
+              off: "OFF"
+            },
+            de:{
+              off: "OFF"
+            },
+            zh:{
+              off: "OFF"
+            }
+          }
+        }
   		},
+      ready: function() {
+        if(this.product.onSale) {
+          typeof this.querySelector('.price').classList.add('onSale');
+        }
+      },
+      _activity: function(activity) {
+        switch(activity) {
+            case "TELL_A_FRIEND":
+                return "Tell a friend";
+            case "SHARE":
+                return "Shared"
+            case "ADD_TO_WISHLIST":
+                return "Added to wishlist"
+            case "ADD_TO_BASKET":
+                return "Added to basket"                
+            default:
+                return null;
+        }
+      },     
   		_imgUrl: function(pid) {
   			return '//cache.net-a-porter.com/images/products/'+pid+'/'+pid+'_in_l.jpg'
   		},
       _productUrl: function(pid) {
         return '/' + NAP.locale.country.toLowerCase() + '/' + NAP.locale.language + '/product/'+pid;
       },
-      _generatePrice: function(price) {
-        var amount = price.amount || price.gross; 
-        return NAP.locale.currencySymbol + (Math.ceil(amount / price.divisor)).toString().replace(/\d(?=(\d{3})+$)/g, '$&,');
+      _generatePrice: function(price, isOnSale) {
+        if(isOnSale) {
+          return this._formatPrice(price.original.gross, price.divisor);
+        } else {
+          return this._formatPrice(price.gross, price.divisor);
+        }
+      },
+      _formatPrice: function(amount, divisor) {
+        return priceString = NAP.locale.currencySymbol + (Math.ceil(amount / divisor)).toString().replace(/\d(?=(\d{3})+$)/g, '$&,');
+      },
+      _discount: function(price) {
+        return price.discountPercent + '% ' + this.copy[NAP.locale.language].off;
       },
       _indexShot: function() {
         this.$.image.src = this.$.image.src.replace(/ou_(.*)\.jpg/, 'in_$1.jpg');

@@ -5,25 +5,28 @@
     :host {
       display: block;
     }
-    .title {
+    .heading {
       text-transform: uppercase;
       text-align: center;
       padding: 40px 0;
+      margin-top: 40px;
+      border-top: 1px solid #ccc;
     }
 
     nap-product-upsell {
       margin: 0 10px;
     }
 
-    @media all and (min-width: 769px) {
+    @media all and (min-width: 481px) {
       nap-product-upsell {
-        margin: 0 85px;
+        width: 82%;
+        margin: 0 auto;
       }
     }
     @media all and (min-width: 951px) {
       nap-product-upsell {
+        width: 100%;
         max-width: 1080px;
-        margin: 0 auto;
       }
     }
   </style>
@@ -32,11 +35,13 @@
     <iron-ajax
       auto
       url="{{_ymalUrl(pid)}}"
-      params="{{_generateParams(pids, limit)}}"
       handle-as="json"
-      last-response="{{ymalData}}"></iron-ajax>
-    <h2 class="title">{{title}}</h2>
-    <nap-product-upsell class="row" pids="{{ymalData.ymalPids}}" limit="6"></nap-product-upsell>
+      last-response="{{ymalData}}"
+      last-error="{{error}}"></iron-ajax>
+    <template is="dom-if" if="{{_pidsExist(ymalData)}}">
+      <h2 class="heading">{{heading}}</h2>
+      <nap-product-upsell class="row center-lg" pids="{{ymalData.ymalPids}}" limit="6"></nap-product-upsell>
+    </template>
   </template>
 
   <script>
@@ -44,10 +49,13 @@
       is: 'nap-ymal-module',
       properties:{
         pid: String,
-        title: String
+        heading: String
       },
       _ymalUrl: function(pid) {
         return '/api/styling/products/' + pid + '/1/ymal.json'
+      },
+      _pidsExist: function(data) {
+        return data && (data.ymalPids.length > 0);
       }
     });
   </script>

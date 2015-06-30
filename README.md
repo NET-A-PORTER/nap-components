@@ -31,11 +31,6 @@ You should run this before committing new code.
 ## Testing
 
 Run `./test.sh` to test your components. This runs against Chrome, Firefox, Safari and IE using [Sauce Labs](https://saucelabs.com/home).
-If you need access to the Sauce Labs account the credentials are:
-
-Username: naptech
-
-Password: NapTech123
 
 When writing new tests, either follow the examples already in the repo, or refer to the [Polymer docs on unit testing](https://www.polymer-project.org/0.5/articles/unit-testing-elements.html#polymers-testing-conventions).
 
