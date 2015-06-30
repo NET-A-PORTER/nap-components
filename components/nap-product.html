@@ -61,6 +61,15 @@ defined by the LAD API.
            on-mouseout="_indexShot"/>
       <div class="designer">{{product.brand.name}}</div>
       <div class="name">{{product.name}}</div>
+
+      <template is="dom-if" if="{{product.activity}}">
+        <div class="locale">
+          <span class="city">{{product.activity.locale.city}}</span>
+          <span class="country">{{product.activity.locale.country}}</span>
+        </div>
+        <div class="activity">{{_activity(product.activity.type)}}</div>
+      </template>
+
       <div class="price">
         <template is="dom-if" if="{{!product.onSale}}">
           <span class="full-price">{{_currentPrice(product.price)}}</span>
@@ -97,6 +106,20 @@ defined by the LAD API.
           }
         }
   		},
+      _activity: function(activity) {
+        switch(activity) {
+            case "TELL_A_FRIEND":
+                return "Tell a friend";
+            case "SHARE":
+                return "Shared"
+            case "ADD_TO_WISHLIST":
+                return "Added to wishlist"
+            case "ADD_TO_BASKET":
+                return "Added to basket"                
+            default:
+                return null;
+        }
+      },     
   		_imgUrl: function(pid) {
   			return '//cache.net-a-porter.com/images/products/'+pid+'/'+pid+'_in_l.jpg'
   		},

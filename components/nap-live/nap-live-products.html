@@ -1,0 +1,60 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="nap-live-products">
+  
+  <template>
+    <iron-ajax
+      auto
+      url="/webapi/feed/productactivity.json"
+      params="{{_generateParams(size)}}"
+      handle-as="json"
+      last-response="{{productActivity}}"
+      ></iron-ajax>
+      <template is="dom-repeat" items="{{_normaliseProductData(productActivity)}}">
+       <nap-product class="col-xs-6 col-sm-4 col-lg-2" product$="{{item}}"></nap-product>
+      </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nap-live-products',
+      properties:{
+        pids: Array,
+        size: {
+          type: Number,
+          value: 6 // Default
+        }
+      },     
+      _generateParams: function(size) {
+        return {
+          channel: 'NAP_' + NAP.locale.channel.toUpperCase(),
+          size: size
+        };
+      },
+      _normaliseProductData: function(productActivity) {
+        var normalisedProductDataArr = [];
+        productActivity.productactivity.forEach(function(productActivityItem){
+          normalisedProductDataArr.push({
+            id: productActivityItem.pid,
+            name: productActivityItem.title,
+            brand: {
+              name: productActivityItem.designer
+            },
+            activity: {
+              hash: productActivityItem.hash,
+              activityCreated: productActivityItem.activityCreated,
+              type: productActivityItem.activityType,
+              locale: {
+                city: productActivityItem.city,
+                country: productActivityItem.country,
+                latitude: productActivityItem.latitude,
+                longitude: productActivityItem.longitude,
+              }
+            }
+          })
+        })
+        return normalisedProductDataArr;
+      }
+    });
+  </script>
+
+</dom-module>
