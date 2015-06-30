@@ -46,9 +46,6 @@ defined by the LAD API.
       -webkit-box-orient: vertical;
       margin: 10px 0;
     }
-    .onSale .full-price {
-      text-decoration: line-through;
-    }
     .sale-price, .discount {
       color: #F00;
       padding-left: 5px;
@@ -65,9 +62,12 @@ defined by the LAD API.
       <div class="designer">{{product.brand.name}}</div>
       <div class="name">{{product.name}}</div>
       <div class="price">
-        <span class="full-price">{{_generatePrice(product.price, product.onSale)}}</span>
+        <template is="dom-if" if="{{!product.onSale}}">
+          <span class="full-price">{{_currentPrice(product.price)}}</span>
+        </template>
         <template is="dom-if" if="{{product.onSale}}">
-          <span class="sale-price">{{_generatePrice(product.price)}}</span>
+          <s><span class="full-price">{{_originalPrice(product.price)}}</span></s>
+          <span class="sale-price">{{_currentPrice(product.price)}}</span>
           <span class="discount">{{_discount(product.price)}}</span>
         </template>
       </div>
@@ -97,23 +97,17 @@ defined by the LAD API.
           }
         }
   		},
-      ready: function() {
-        if(this.product.onSale) {
-          typeof this.querySelector('.price').classList.add('onSale');
-        }
-      },
   		_imgUrl: function(pid) {
   			return '//cache.net-a-porter.com/images/products/'+pid+'/'+pid+'_in_l.jpg'
   		},
       _productUrl: function(pid) {
         return '/' + NAP.locale.country.toLowerCase() + '/' + NAP.locale.language + '/product/'+pid;
       },
-      _generatePrice: function(price, isOnSale) {
-        if(isOnSale) {
-          return this._formatPrice(price.original.gross, price.divisor);
-        } else {
-          return this._formatPrice(price.gross, price.divisor);
-        }
+      _currentPrice: function(price) {
+        return this._formatPrice(price.gross, price.divisor);
+      },
+      _originalPrice: function(price) {
+        return this._formatPrice(price.original.gross, price.divisor);
       },
       _formatPrice: function(amount, divisor) {
         return priceString = NAP.locale.currencySymbol + (Math.ceil(amount / divisor)).toString().replace(/\d(?=(\d{3})+$)/g, '$&,');
